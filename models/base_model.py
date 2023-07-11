@@ -24,8 +24,8 @@ class BaseModel:
         """
         return object representation in a string format
         """
-        return ("[{:s}] ({:s}) {:s}".format(str(self.__class__.__name__),
-                str(self.id), str(self.__dict__)))
+        return ("[{:s}] ({:s}) {:s}".format(self.__class__.__name__,
+                self.id, str(self.__dict__)))
 
     def save(self):
         """
@@ -42,5 +42,6 @@ class BaseModel:
         di = self.__dict__.copy()
         di['created_at'] = self.created_at.isoformat()
         di['updated_at'] = self.updated_at.isoformat()
+        di['__class__'] = self.__class__.__name__
 
         return (di)

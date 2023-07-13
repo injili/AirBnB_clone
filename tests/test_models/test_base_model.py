@@ -18,3 +18,13 @@ class TestBaseModel(unittest.TestCase):
         test the functionality of the class
         """
         self.assertTrue(type(BaseModel()), BaseModel)
+
+    def test_attributes(self):
+        """
+        test the class attributes
+        """
+        r1.BaseModel()
+        ri.name = "Skito"
+        r1.my_number = 99
+        self.assertEqual(r1.name == "Skito")
+        self.assertEqual(r1.my_number == 99)

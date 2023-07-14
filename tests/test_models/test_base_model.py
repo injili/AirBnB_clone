@@ -43,3 +43,7 @@ class TestBaseModel(unittest.TestCase):
         test the workings of the methods
         """
         r2 = BaseModel()
+        r2.name = "Skito"
+        r2.my_number = 99
+        exp_output = "[BaseModel] ({}) {}".format(self.r2.id, str(self.r2.__dict__))
+        self.assertEqual(print(r2), exp_output)

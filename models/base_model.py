@@ -10,15 +10,25 @@ class BaseModel:
     """
     This class defines all common attributes and methods for other classes
     """
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """
         instance attributes
         """
-        self.name = None
-        self.my_number = None
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        self.name = kwargs.get('name', None)
+        self.my_number = kwargs.get('my_number',None)
+        self.id = kwargs.get( 'id', str(uuid4()))
+
+        created_at = kwargs.get('created_at')
+        if created_at:
+            self.created_at = datetime.strptime(created_at, "%Y-%m-%dT%H:%M:%S.%f")
+        else:
+            self.created_at = datetime.now()
+
+        updated_at = kwargs.get('updated_at')
+        if updated_at:
+            self.updated_at = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f")
+        else:
+            self.updated_at = datetime.now()
 
     def __str__(self):
         """

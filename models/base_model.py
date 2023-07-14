@@ -4,7 +4,7 @@ This is the module base_model
 """
 from datetime import datetime
 from uuid import uuid4
-import models
+from models import storage
 
 class BaseModel:
     """
@@ -14,7 +14,7 @@ class BaseModel:
         """
         instance attributes
         """
-        storage.new()
+
         self.name = kwargs.get('name', None)
         self.my_number = kwargs.get('my_number',None)
         self.id = kwargs.get( 'id', str(uuid4()))
@@ -31,6 +31,9 @@ class BaseModel:
         else:
             self.updated_at = datetime.now()
 
+        if not kwargs:
+            storage.new(self)
+
     def __str__(self):
         """
         return object representation in a string format
@@ -42,8 +45,8 @@ class BaseModel:
         """
         update the update_at attribute each time it is updated
         """
-        storage.save()
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """

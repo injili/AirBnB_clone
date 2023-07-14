@@ -18,7 +18,7 @@ class FileStorage:
             __file_path: the string path to the JSON file
             __objects: the dictionary thatstores all the objects
         """
-        self.__file_path = ""
+        self.__file_path = "file.json"
         self.__objects = {}
 
     def all(self):

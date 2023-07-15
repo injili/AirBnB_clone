@@ -14,7 +14,6 @@ class BaseModel:
         """
         instance attributes
         """
-
         self.name = kwargs.get('name', None)
         self.my_number = kwargs.get('my_number',None)
         self.id = kwargs.get( 'id', str(uuid4()))

@@ -48,8 +48,10 @@ class BaseModel:
         updated_at in string object ISO format
         """
         di = self.__dict__.copy()
-        di['created_at'] = self.created_at.isoformat()
-        di['updated_at'] = self.updated_at.isoformat()
         di['__class__'] = self.__class__.__name__
+        for key, value in self.__dict__.items():
+            if key in ('created_at', 'updated_at'):
+                value = self.__dict__[key].isoformat()
+                di[key] = value
 
         return (di)

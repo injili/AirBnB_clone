@@ -40,8 +40,11 @@ class FileStorage:
         """
         serializes the __objects dictionary to the JSON file
         """
-        with open(self.__file_path, 'w') as f:
-            json.dump(self.__objects, f)
+        try:
+            with open(self.__file_path, 'w', encoding="UTF-8") as f:
+                json.dump(self.__objects, f)
+        except:
+            pass
 
     def reload(self):
         """

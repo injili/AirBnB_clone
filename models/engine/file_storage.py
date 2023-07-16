@@ -11,21 +11,14 @@ class FileStorage:
     serializes instances to a JSON file
     and deserializes JSON file to instances
     """
-    def __init__(self):
-        """
-        instance constructor with the
-        attributes:
-            __file_path: the string path to the JSON file
-            __objects: the dictionary thatstores all the objects
-        """
-        self.__file_path = "file.json"
-        self.__objects = {}
+    __file_path = "file.json"
+    __objects = {}
 
     def all(self):
         """
         returns the dictionary __objects
         """
-        return self.__objects
+        return FileStorage.__objects
 
     def new(self, obj):
         """
@@ -34,27 +27,26 @@ class FileStorage:
             <obj class name>.id
         """
         key = "{:s}.{:s}".format(obj.__class__.__name__, obj.id)
-        self.__objects[key] = obj
+        FileStorage.__objects[key] = obj
 
     def save(self):
         """
         serializes the __objects dictionary to the JSON file
         """
-        try:
-            with open(self.__file_path, 'w', encoding="UTF-8") as f:
-                json.dump(self.__objects, f)
-        except:
-            pass
+        file_name = FileStorage.__file_path
+        serialized_data = {k: v.to_dict() for k, v in FileStorage.__objects.items()}
+        with open(file_name, 'w', encoding="UTF-8") as f:
+            json.dump(serialized_data, f)
 
     def reload(self):
         """
         deseralizes the JSON file  to __objects
         """
-        if os.path.exists(self.__file_path):
+        if os.path.exists(FileStorage.__file_path):
             try:
-                with open(self.__file_path, 'r', encoding="UTF-8") as f:
-                    self.__objects = json.load(f)
+                with open(FileStorage.__file_path, 'r', encoding="UTF-8") as f:
+                    data = json.load(f)
+                    for key,value in data.items():
+                        FileStorage.__objects[key] = value
             except:
                 pass
-        else:
-            self.__objects = {}

@@ -12,28 +12,22 @@ class BaseModel:
     """
     def __init__(self, *args, **kwargs):
         """
-        instance attributes
+        Instance attributes
+        Initialization of class BaseModel
         """
-        self.name = kwargs.get('name', None)
-        self.my_number = kwargs.get('my_number',None)
-        self.id = kwargs.get( 'id', str(uuid4()))
-
-        created_at = kwargs.get('created_at')
-        if created_at:
-            self.created_at = datetime.strptime(created_at, "%Y-%m-%dT%H:%M:%S.%f")
-        else:
-            self.created_at = datetime.now()
-
-        updated_at = kwargs.get('updated_at')
-        if updated_at:
-            self.updated_at = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f")
-        else:
-            self.updated_at = datetime.now()
-
         if not kwargs:
+            self.id = str(uuid.4())
+            self.created_at = self.updated_at = datetime.now()
             models.storage.new(self)
+        else:
+            for key, value in kwargs.items():
+                if key != '__class__':
+                    if key in ('created_at', 'updated_at'):
+                        setattr(self, key, datetime.fromisoformat(value))
+                    else:
+                        setattr(self, key, value)
 
-    def __str__(self):
+    def __str__():
         """
         return object representation in a string format
         """

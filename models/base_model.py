@@ -45,7 +45,7 @@ class BaseModel:
         update the update_at attribute each time it is updated
         """
         self.updated_at = datetime.now()
-        storage.save()
+        models.storage.save()
 
     def to_dict(self):
         """

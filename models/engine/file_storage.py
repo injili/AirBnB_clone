@@ -47,8 +47,6 @@ class FileStorage:
         """
         deseralizes the JSON file  to __objects
         """
-        if os.path.exists(self.__file_path):
-            with open(self.__file_path, 'r') as f:
+        try:
+            with open(self.__file_path, 'r', encoding="UTF-8") as f:
                 self.__objects = json.load(f)
-        else:
-            pass

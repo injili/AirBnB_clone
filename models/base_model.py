@@ -4,7 +4,7 @@ This is the module base_model
 """
 from datetime import datetime
 from uuid import uuid4
-from models import storage
+import models
 
 class BaseModel:
     """
@@ -31,7 +31,7 @@ class BaseModel:
             self.updated_at = datetime.now()
 
         if not kwargs:
-            storage.new(self)
+            models.storage.new(self)
 
     def __str__(self):
         """

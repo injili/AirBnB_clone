@@ -16,7 +16,7 @@ class BaseModel:
         Initialization of class BaseModel
         """
         if not kwargs:
-            self.id = str(uuid.4())
+            self.id = str(uuid4())
             self.created_at = self.updated_at = datetime.now()
             models.storage.new(self)
         else:
@@ -27,7 +27,7 @@ class BaseModel:
                     else:
                         setattr(self, key, value)
 
-    def __str__():
+    def __str__(self):
         """
         return object representation in a string format
         """
@@ -47,6 +47,7 @@ class BaseModel:
         created_at in string object ISO format
         updated_at in string object ISO format
         """
+
         di = self.__dict__.copy()
         di['__class__'] = self.__class__.__name__
         for key, value in self.__dict__.items():

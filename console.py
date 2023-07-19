@@ -35,3 +35,24 @@ def parse(arg):
         retl = [i.strip(",") for i in lexer]
         retl.append(curly_braces.group())
         return retl
+
+
+class HBNBCommand(cmd.Cmd):
+    """
+    implementation of the quit, EOF and help commands
+    """
+    prompt = "(hbnb) "
+    __classes = {
+            "BaseModel": BaseModel,
+            "User": User,
+            "State": State,
+            "City": City,
+            "Amenity": Amenity,
+            "Place": Place,
+            "Review": Review
+            }
+    def do_nothing(self, arg):
+        """
+        a class method to implement nothing
+        """
+   

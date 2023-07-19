@@ -31,7 +31,7 @@ class BaseModel:
         """
         return object representation in a string format
         """
-        return ("[{:s}] ({:s}) {:s}".format(self.__class__.__name__,
+        return ("[{}] ({}) {}".format(self.__class__.__name__,
                 self.id, str(self.__dict__)))
 
     def save(self):

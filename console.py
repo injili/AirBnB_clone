@@ -55,4 +55,33 @@ class HBNBCommand(cmd.Cmd):
         """
         a class method to implement nothing
         """
-   
+        pass
+
+    def do_all(self, arg):
+        """
+        Implementation of the quit method
+        """
+        return True
+
+    def do_EOF(self, arg):
+        """
+        method to signal the close of the program
+        """
+        print("")
+        return True
+
+    def do_create(self, arg):
+        """
+        method to create a new class instance
+        prints the id
+        """
+        arg1 = parse(arg)
+        if len(arg1) == 0:
+            print("** class name missing **")
+        elif arg1[0] not in HNBCommand.__classes:
+            print("** class doesn't exist **")
+        else:
+            print(eval(arg1[0])().id)
+            storage.save()
+
+    def do_show

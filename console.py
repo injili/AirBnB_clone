@@ -16,9 +16,10 @@ from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
 
+
 def parse(arg):
     """
-    content search
+    content search for other functions
     """
     curly_braces = re.search(r"\{(.*?)\}", arg)
     brackets = re.search(r"\[(.*?)\]", arg)
@@ -51,6 +52,7 @@ class HBNBCommand(cmd.Cmd):
             "Place": Place,
             "Review": Review
             }
+
     def do_nothing(self, arg):
         """
         a class method to implement nothing
@@ -105,7 +107,7 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, arg):
         """
         this method deletes an instance based
-        on the class name and id 
+        on the class name and id
         """
 
         arg1 = parse(arg)
@@ -195,12 +197,14 @@ class HBNBCommand(cmd.Cmd):
             obj = obj_dict["{}.{}".format(arg1[0], arg1[1])]
             for key, value in eval(arg[2]).items():
                 if (key in obj.__class__.__dict__.keys() and
-                    type(obj,__class__.__dict__[key]) in {str, int, float}):
+                        type(obj.__class__.__dict__[key]) in
+                        {str, int, float}):
                     valuetype = type(obj.__class__.__dict__[key])
                     obj.__dict__[key] = valueType(value)
                 else:
                     obj.__dict__[key] = value
         storage.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

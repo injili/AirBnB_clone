@@ -80,7 +80,7 @@ class HBNBCommand(cmd.Cmd):
         arg1 = parse(arg)
         if len(arg1) == 0:
             print("** class name missing **")
-        elif arg1[0] not in HNBCommand.__classes:
+        elif arg1[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
         else:
             print(eval(arg1[0])().id)
@@ -102,7 +102,7 @@ class HBNBCommand(cmd.Cmd):
         elif "{}.{}".format(arg1[0], arg1[1]) not in obj_dict:
             print("** no instance found **")
         else:
-            print(obj_dict["{}.{}".format(arg1[0], arg[1])])
+            print(obj_dict["{}.{}".format(arg1[0], arg1[1])])
 
     def do_destroy(self, arg):
         """
@@ -187,7 +187,7 @@ class HBNBCommand(cmd.Cmd):
                 return False
 
         if len(arg1) == 4:
-            obj = obj_dict["{}.{}".format(arg[0], arg1[1])]
+            obj = obj_dict["{}.{}".format(arg1[0], arg1[1])]
             if arg1[2] in obj.__class__.__dict__.keys():
                 valueType = type(obj.__class__.__dict__[arg1[2]])
                 obj.__dict__[arg1[2]] = valueType(arg1[3])

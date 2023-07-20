@@ -24,7 +24,7 @@ def parse(arg):
     curly_braces = re.search(r"\{(.*?)\}", arg)
     brackets = re.search(r"\[(.*?)\]", arg)
     if curly_braces is None:
-        if backets is None:
+        if brackets is None:
             return [i.strip(",") for i in split(arg)]
         else:
             lexer = split(arg[:brackets.span()[0]])
@@ -141,7 +141,7 @@ class HBNBCommand(cmd.Cmd):
                     obj1.append(obj.__str__())
             print(obj1)
 
-    def do_count(self. arg):
+    def do_count(self, arg):
         """
         Retrieves the number of instances of specific classes
         """

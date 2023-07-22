@@ -1,0 +1,10 @@
+@charset="UTF-8";
+/* 3-footer.css */
+
+footer {
+	background-color: white;
+	height: 60px;
+	width: 100px;
+	border-top: 1px solid #CCCCCC;
+	text-align: center;
+}
